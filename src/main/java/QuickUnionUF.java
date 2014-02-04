@@ -1,10 +1,9 @@
 // This class implements Union-Find algorithm.
 
-public class UnionFind {
+public class QuickUnionUF {
     private int[] data;
 
-
-    public UnionFind(int n) {
+    public QuickUnionUF(int n) {
         data = new int[n];
 
         for (int i = 0; i < n; i++) {
@@ -14,6 +13,7 @@ public class UnionFind {
 
     public void union(int a, int b) {
         if (data[a] == data[b]) return;
+
         int prev = data[a];
         int curr = data[b];
 
