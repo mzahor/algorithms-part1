@@ -1,27 +1,30 @@
+// This class implements Union-Find algorithm.
 
 public class QuickFindUF {
     private int[] data;
 
     public QuickFindUF(int n) {
         data = new int[n];
+
         for (int i = 0; i < n; i++) {
             data[i] = i;
         }
     }
 
-    private int getRoot(int a) {
-        if (data[a] == a) return a;
-        return getRoot(data[a]);
-    }
-
     public void union(int a, int b) {
-        int rootA = getRoot(a);
-        int rootB = getRoot(b);
+        if (data[a] == data[b]) return;
 
-        data[rootA] = rootB;
+        int prev = data[a];
+        int curr = data[b];
+
+        for(int i = 0; i < data.length; i++) {
+            if (data[i] == prev) {
+                data[i] = curr;
+            }
+        }
     }
 
     public boolean connected(int a, int b) {
-        return getRoot(a) == getRoot(b);
+        return data[a] == data[b];
     }
 }

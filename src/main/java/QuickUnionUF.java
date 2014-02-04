@@ -1,30 +1,31 @@
-// This class implements Union-Find algorithm.
+// implements QuickFind union-find algorithm
+// more info about this algorithm you can find here http://algs4.cs.princeton.edu/15uf/
+// this is my own implementation
 
 public class QuickUnionUF {
     private int[] data;
 
     public QuickUnionUF(int n) {
         data = new int[n];
-
         for (int i = 0; i < n; i++) {
             data[i] = i;
         }
     }
 
+    // can be optimized with tail recursion
+    private int getRoot(int a) {
+        if (data[a] == a) return a;
+        return getRoot(data[a]);
+    }
+
     public void union(int a, int b) {
-        if (data[a] == data[b]) return;
+        int rootA = getRoot(a);
+        int rootB = getRoot(b);
 
-        int prev = data[a];
-        int curr = data[b];
-
-        for(int i = 0; i < data.length; i++) {
-            if (data[i] == prev) {
-                data[i] = curr;
-            }
-        }
+        data[rootA] = rootB;
     }
 
     public boolean connected(int a, int b) {
-        return data[a] == data[b];
+        return getRoot(a) == getRoot(b);
     }
 }
