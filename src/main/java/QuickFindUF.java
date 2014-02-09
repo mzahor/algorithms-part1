@@ -1,5 +1,4 @@
 // This class implements Union-Find algorithm.
-
 public class QuickFindUF {
     private int[] data;
 
