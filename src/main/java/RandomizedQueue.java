@@ -31,7 +31,7 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
     private void checkArraySize(int nextIndex) {
         if (nextIndex >= arrSize) {
             resizeDataArray(arrSize * 2);
-        } else if (nextIndex < arrSize / 2 && arrSize > minArrSize) {
+        } else if (nextIndex < arrSize / 4 && arrSize > minArrSize) {
             resizeDataArray(arrSize / 2);
         }
     }

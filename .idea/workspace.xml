@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9e8eec93-aa35-457a-a797-f7ae3ed31901" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/Deque.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/RandomizedQueue.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/Subset.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/RandomizedQueue.java" afterPath="$PROJECT_DIR$/src/main/java/RandomizedQueue.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="algorithms-part1.iws" />
@@ -85,7 +83,7 @@
       <file leaf-file-name="Deque.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Deque.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="55" selection-start="619" selection-end="619" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2475">
+            <state line="158" column="5" selection-start="3040" selection-end="3797" vertical-scroll-proportion="0.0" vertical-offset="1755" max-vertical-offset="2475">
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#606#612#0" expanded="true" />
@@ -104,7 +102,7 @@
       <file leaf-file-name="RandomizedQueue.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/RandomizedQueue.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="0" selection-start="235" selection-end="235" vertical-scroll-proportion="0.17366137" vertical-offset="0" max-vertical-offset="1605">
+            <state line="33" column="40" selection-start="859" selection-end="859" vertical-scroll-proportion="0.7163531" vertical-offset="0" max-vertical-offset="1605">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -207,8 +205,8 @@
         <option value="$PROJECT_DIR$/src/main/java/PercolationStats.java" />
         <option value="$PROJECT_DIR$/src/test/java/Quiz1_1Test.java" />
         <option value="$PROJECT_DIR$/src/main/java/Deque.java" />
-        <option value="$PROJECT_DIR$/src/main/java/RandomizedQueue.java" />
         <option value="$PROJECT_DIR$/src/main/java/Subset.java" />
+        <option value="$PROJECT_DIR$/src/main/java/RandomizedQueue.java" />
       </list>
     </option>
   </component>
@@ -805,12 +803,12 @@
       <updated>1391450956859</updated>
       <workItem from="1391450958288" duration="5421000" />
       <workItem from="1391526846626" duration="20609000" />
-      <workItem from="1391945928229" duration="8474000" />
+      <workItem from="1391945928229" duration="8773000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34504000" />
+    <option name="totallyTimeSpent" value="34803000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1440" height="811" extended-state="6" />
@@ -1047,9 +1045,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Subset.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="49" selection-start="453" selection-end="453" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="465">
+          <folding>
+            <element signature="e#154#162#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Deque.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="55" selection-start="619" selection-end="619" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2475">
+        <state line="158" column="5" selection-start="3040" selection-end="3797" vertical-scroll-proportion="0.0" vertical-offset="1755" max-vertical-offset="2475">
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#606#612#0" expanded="true" />
@@ -1064,18 +1071,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Subset.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="49" selection-start="453" selection-end="453" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="465">
-          <folding>
-            <element signature="e#154#162#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/RandomizedQueue.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="0" selection-start="235" selection-end="235" vertical-scroll-proportion="0.17366137" vertical-offset="0" max-vertical-offset="1605">
+        <state line="33" column="40" selection-start="859" selection-end="859" vertical-scroll-proportion="0.7163531" vertical-offset="0" max-vertical-offset="1605">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
