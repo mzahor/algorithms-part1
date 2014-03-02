@@ -10,7 +10,7 @@ public class BinaryHeap<T extends Comparable<T>> {
 
     public BinaryHeap(int size) {
         if (size < 1) {
-            throw new IllegalArgumentException("Size of heap is too small.");
+            throw new IllegalArgumentException("Size of the heap is too small.");
         }
 
         this.size = size;
@@ -28,7 +28,7 @@ public class BinaryHeap<T extends Comparable<T>> {
 
     public void printData() {
         for (T item : data) {
-            System.out.print(item.toString() + " ");
+            if (item != null) System.out.print(item.toString() + " ");
         }
         System.out.println();
     }

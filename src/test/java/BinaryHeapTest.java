@@ -62,7 +62,7 @@ public class BinaryHeapTest {
     }
 
     @Test
-    void insert_remove_Grows_and_Shrinks() {
+    public void insert_remove_Grows_and_Shrinks() {
         BinaryHeap<Integer> testHeap = new BinaryHeap<Integer>();
         for (int i = 1; i < 100; i++) {
             testHeap.insert(i);
@@ -74,7 +74,7 @@ public class BinaryHeapTest {
     }
 
     @Test
-    void invariantsMaintained_returnsTrue_forValidSeq() {
+    public void invariantsMaintained_returnsTrue_forValidSeq() {
         BinaryHeap<Integer> testHeap = new BinaryHeap<Integer>();
         for (int i = 1; i < 100; i++) {
             testHeap.insert(i);
@@ -91,7 +91,7 @@ public class BinaryHeapTest {
     }
 
     @Test
-    void invariantsMaintained_returnsFalse_forNotValidSeq() {
+    public void invariantsMaintained_returnsFalse_forNotValidSeq() {
         BinaryHeap<Integer> testHeap = new BinaryHeap<Integer>();
         testHeap.setData(new Integer[]{1, 2, 3});
         Assert.assertFalse(testHeap.invariantsMaintained());
@@ -99,5 +99,41 @@ public class BinaryHeapTest {
         testHeap = new BinaryHeap<Integer>();
         testHeap.setData(new Integer[]{2, 2, 2, 3});
         Assert.assertFalse(testHeap.invariantsMaintained());
+    }
+
+    //    (seed = 489602)
+    //    Give the sequence of the 13 keys in the array that results after inserting the sequence of 3 keys
+    //
+    //    51 59 64
+    //
+    //    into the following maximum-oriented binary heap of size 10:
+    //
+    //            92 78 85 19 18 11 39 16 10 17
+    @Test
+    public void quiz_solver_1() {
+        BinaryHeap<Integer> heap = new BinaryHeap<Integer>();
+        heap.setData(new Integer[]{92, 78, 85, 19, 18, 11, 39, 16, 10, 17});
+        heap.insert(51);
+        heap.insert(59);
+        heap.insert(64);
+
+        heap.printData();
+    }
+
+    //    (seed = 403083)
+    //    Give the sequence of the 7 keys in the array that results after performing 3 successive delete-the-max
+    //    operations on the following maximum-oriented binary heap of size 10:
+    //
+    //            87 76 68 56 49 54 24 39 46 35
+    //
+    // answer: 56 49 54 46 39 35 24
+    @Test
+    public void quiz_solver_2() {
+        BinaryHeap<Integer> heap = new BinaryHeap<Integer>();
+        heap.setData(new Integer[]{87, 76, 68, 56, 49, 54, 24, 39, 46, 35});
+        heap.removeMax();
+        heap.removeMax();
+        heap.removeMax();
+        heap.printData();
     }
 }
