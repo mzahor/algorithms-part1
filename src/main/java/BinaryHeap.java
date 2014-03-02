@@ -26,6 +26,13 @@ public class BinaryHeap<T extends Comparable<T>> {
         }
     }
 
+    public void printData() {
+        for (T item : data) {
+            System.out.print(item.toString() + " ");
+        }
+        System.out.println();
+    }
+
     public void setData(T[] data) {
         this.data = data;
         this.size = data.length;
