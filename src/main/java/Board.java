@@ -104,7 +104,6 @@ public class Board {
         int pos0 = search0();
         i0 = pos0 / d;
         j0 = pos0 % d;
-        System.out.printf("i=%d j=%d pos=%d\n", i0, j0, pos0);
         ArrayList<Board> result = new ArrayList<Board>();
         Board board;
         if (i0 > 0) {
