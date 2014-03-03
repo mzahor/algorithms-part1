@@ -33,7 +33,7 @@ public class Board {
                 if (b[i][j] != i * d + j + 1) result++;
             }
         }
-        return result;
+        return --result;
     }
 
     // sum of Manhattan distances between blocks and goal

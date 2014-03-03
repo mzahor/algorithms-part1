@@ -60,11 +60,10 @@ public class BoardTest {
     @Test
     public void hammingTest_0result() {
         Board board = new Board(new int[][]{
-                {3, 2, 1},
-                {6, 5, 4},
-                {8, 7, 0}
+                {1, 2},
+                {3, 0}
         });
 
-        Assert.assertEquals(3, board.dimension());
+        Assert.assertEquals(0, board.hamming());
     }
 }
