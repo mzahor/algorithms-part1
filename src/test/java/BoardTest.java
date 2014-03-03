@@ -1,6 +1,10 @@
 import junit.framework.Assert;
 import org.testng.annotations.Test;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 public class BoardTest {
     @Test
     public void ctorTest() {
@@ -98,5 +102,148 @@ public class BoardTest {
         });
 
         Assert.assertEquals(7, board.manhattan());
+    }
+
+    @Test
+    public void isGoal_returnsTrueIfGoal() {
+        Board board = new Board(new int[][]{
+                {1, 2, 3},
+                {4, 5, 6},
+                {7, 8, 0},
+        });
+
+        Assert.assertTrue(board.isGoal());
+    }
+
+    @Test
+    public void isGoal_returnsFalseIfNotGoal() {
+        Board board = new Board(new int[][]{
+                {1, 2, 5},
+                {4, 3, 6},
+                {7, 8, 0},
+        });
+
+        Assert.assertFalse(board.isGoal());
+    }
+
+    @Test
+    public void toString_returnsString() {
+        Board board = new Board(new int[][]{
+                {1, 2, 3},
+                {4, 5, 6},
+                {7, 8, 0},
+        });
+
+        Assert.assertEquals("1 2 3 \n4 5 6 \n7 8   \n", board.toString());
+    }
+
+    @Test
+    public void twin_returnsTwin() {
+        Board board = new Board(new int[][]{
+                {1, 2, 3},
+                {4, 5, 6},
+                {7, 8, 0},
+        });
+
+        Assert.assertTrue(board.twin().equals(new Board(new int[][]{
+                {2, 1, 3},
+                {4, 5, 6},
+                {7, 8, 0},
+        })));
+    }
+
+    @Test
+    public void neighborsTest_returnsNeighbors_center() {
+        Board board = new Board(new int[][]{
+                {1, 2, 3},
+                {4, 0, 6},
+                {7, 8, 5},
+        });
+        Iterable<Board> neighbors = board.neighbors();
+        ArrayList<Board> n = makeCollection(neighbors);
+
+        Assert.assertEquals(4, n.size());
+
+        Assert.assertTrue(n.contains(new Board(new int[][]{
+                {1, 0, 3},
+                {4, 2, 6},
+                {7, 8, 5},
+        })));
+
+        Assert.assertTrue(n.contains(new Board(new int[][]{
+                {1, 2, 3},
+                {4, 8, 6},
+                {7, 0, 5},
+        })));
+
+        Assert.assertTrue(n.contains(new Board(new int[][]{
+                {1, 2, 3},
+                {0, 4, 6},
+                {7, 8, 5},
+        })));
+
+        Assert.assertTrue(n.contains(new Board(new int[][]{
+                {1, 2, 3},
+                {4, 6, 0},
+                {7, 8, 5},
+        })));
+    }
+
+    @Test
+    public void neighborsTest_returnsNeighbors_leftCorner() {
+        Board board = new Board(new int[][]{
+                {0, 2, 3},
+                {4, 5, 6},
+                {7, 8, 1},
+        });
+        Iterable<Board> neighbors = board.neighbors();
+        ArrayList<Board> n = makeCollection(neighbors);
+
+        Assert.assertEquals(2, n.size());
+
+        Assert.assertTrue(n.contains(new Board(new int[][]{
+                {2, 0, 3},
+                {4, 5, 6},
+                {7, 8, 1},
+        })));
+
+        Assert.assertTrue(n.contains(new Board(new int[][]{
+                {4, 2, 3},
+                {0, 5, 6},
+                {7, 8, 1},
+        })));
+    }
+
+    @Test
+    public void neighborsTest_returnsNeighbors_rightCorner() {
+        Board board = new Board(new int[][]{
+                {1, 2, 3},
+                {4, 5, 6},
+                {7, 8, 0},
+        });
+        Iterable<Board> neighbors = board.neighbors();
+        ArrayList<Board> n = makeCollection(neighbors);
+
+        Assert.assertEquals(2, n.size());
+
+        Assert.assertTrue(n.contains(new Board(new int[][]{
+                {1, 2, 3},
+                {4, 5, 0},
+                {7, 8, 6},
+        })));
+
+        Assert.assertTrue(n.contains(new Board(new int[][]{
+                {1, 2, 3},
+                {4, 5, 6},
+                {7, 0, 8},
+        })));
+    }
+
+    public static <E> ArrayList<E> makeCollection(Iterable<E> iter) {
+        ArrayList<E> list = new ArrayList<E>();
+        for (E item : iter) {
+            list.add(item);
+        }
+        return list;
     }
 }

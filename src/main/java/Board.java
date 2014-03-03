@@ -101,9 +101,10 @@ public class Board {
     // all neighboring boards
     public Iterable<Board> neighbors() {
         int i0, j0;
-        int pos0 = search0() - 1;
+        int pos0 = search0();
         i0 = pos0 / d;
         j0 = pos0 % d;
+        System.out.printf("i=%d j=%d pos=%d\n", i0, j0, pos0);
         ArrayList<Board> result = new ArrayList<Board>();
         Board board;
         if (i0 > 0) {
@@ -133,7 +134,7 @@ public class Board {
         for (int i = 0; i < b.length; i++) {
             for (int j = 0; j < b.length; j++)
                 if (b[i][j] == 0)
-                    return i * d + j - 1;
+                    return i * d + j;
         }
         throw new IllegalArgumentException("Board doesn't have a free block.");
     }
@@ -145,7 +146,10 @@ public class Board {
         String format = "%" + Integer.toString(maxLen) + "d ";
         for (int i = 0; i < d; i++) {
             for (int j = 0; j < d; j++) {
-                result.append(String.format(format, b[i][j]));
+                if (b[i][j] == 0)
+                    result.append("  ");
+                else
+                    result.append(String.format(format, b[i][j]));
             }
             result.append("\n");
         }
