@@ -61,9 +61,21 @@ public class Board {
     public Board twin() {
         Board result;
         if (d > 1) {
-            exchange(b[0], 0, 1);
-            result = new Board(b);
-            exchange(b[0], 0, 1);
+            if (b[0][0] != 0) {
+                if (b[0][1] != 0) {
+                    exchange(b, 0, 0, 0, 1);
+                    result = new Board(b);
+                    exchange(b, 0, 0, 0, 1);
+                } else {
+                    exchange(b, 0, 0, 1, 0);
+                    result = new Board(b);
+                    exchange(b, 0, 0, 1, 0);
+                }
+            } else {
+                exchange(b, 1, 0, 1, 1);
+                result = new Board(b);
+                exchange(b, 1, 0, 1, 1);
+            }
         } else {
             result = new Board(b);
         }

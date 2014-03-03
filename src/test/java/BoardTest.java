@@ -153,6 +153,36 @@ public class BoardTest {
     }
 
     @Test
+    public void twin_returnsTwin_firstItem0() {
+        Board board = new Board(new int[][]{
+                {0, 2, 3},
+                {4, 5, 6},
+                {7, 8, 1},
+        });
+
+        Assert.assertTrue(board.twin().equals(new Board(new int[][]{
+                {0, 2, 3},
+                {5, 4, 6},
+                {7, 8, 1},
+        })));
+    }
+
+    @Test
+    public void twin_returnsTwin_secondItem0() {
+        Board board = new Board(new int[][]{
+                {1, 0, 3},
+                {4, 5, 6},
+                {7, 8, 2},
+        });
+
+        Assert.assertTrue(board.twin().equals(new Board(new int[][]{
+                {4, 0, 3},
+                {1, 5, 6},
+                {7, 8, 2},
+        })));
+    }
+
+    @Test
     public void neighborsTest_returnsNeighbors_center() {
         Board board = new Board(new int[][]{
                 {1, 2, 3},
