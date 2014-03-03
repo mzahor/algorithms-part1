@@ -30,10 +30,11 @@ public class Board {
         int result = 0;
         for (int i = 0; i < d; i++) {
             for (int j = 0; j < d; j++) {
+                if (b[i][j] == 0) continue;
                 if (b[i][j] != i * d + j + 1) result++;
             }
         }
-        return --result;
+        return result;
     }
 
     // sum of Manhattan distances between blocks and goal
@@ -41,6 +42,7 @@ public class Board {
         int result = 0;
         for (int i = 0; i < d; i++) {
             for (int j = 0; j < d; j++) {
+                if (b[i][j] == 0) continue;
                 int val = b[i][j] - 1;
                 int iA = val / d;
                 int jA = val % d;

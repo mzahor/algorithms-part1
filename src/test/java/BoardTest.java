@@ -66,4 +66,37 @@ public class BoardTest {
 
         Assert.assertEquals(0, board.hamming());
     }
+
+    @Test
+    public void hammingTest_returnsHammingFunction() {
+        Board board = new Board(new int[][]{
+                {1, 2, 3},
+                {6, 4, 5},
+                {7, 0, 8},
+        });
+
+        Assert.assertEquals(4, board.hamming());
+    }
+
+    @Test
+    public void manhattanTest_returnsManhattanFunction() {
+        Board board = new Board(new int[][]{
+                {1, 2, 3},
+                {6, 4, 5},
+                {7, 0, 8},
+        });
+
+        Assert.assertEquals(5, board.manhattan());
+    }
+
+    @Test
+    public void manhattanTest_returnsManhattanFunction_WithBothRowAndColShift() {
+        Board board = new Board(new int[][]{
+                {6, 2, 3},
+                {1, 4, 5},
+                {7, 0, 8},
+        });
+
+        Assert.assertEquals(7, board.manhattan());
+    }
 }
