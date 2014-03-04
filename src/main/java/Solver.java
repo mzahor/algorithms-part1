@@ -62,14 +62,10 @@ public class Solver {
         while (!(search.getBoard().isGoal() || searchTwin.getBoard().isGoal())) {
             search = game.delMin();
             searchTwin = gameTwin.delMin();
-            for (Board b : search.board.neighbors()) {
-                game.insert(new Search(b, search.getMoves() + 1, search));
-            }
-            for (Board b : searchTwin.board.neighbors()) {
-                gameTwin.insert(new Search(b, searchTwin.getMoves() + 1, searchTwin));
-            }
+            runGameRound(search, game);
+            runGameRound(searchTwin, gameTwin);
         }
-        if (search.getBoard().isGoal()){
+        if (search.getBoard().isGoal()) {
             this.moves = search.moves;
             solution = new Board[search.getMoves() + 1];
             do {
@@ -77,6 +73,14 @@ public class Solver {
                 search = search.getPrev();
                 if (search == null) break;
             } while (true);
+        }
+    }
+
+    private void runGameRound(Search search, MinPQ<Search> game){
+        for (Board b : search.board.neighbors()) {
+            if (search.prev == null || !b.equals(search.prev.board)) {
+                game.insert(new Search(b, search.getMoves() + 1, search));
+            }
         }
     }
 
@@ -92,8 +96,9 @@ public class Solver {
 
     // sequence of boards in a shortest solution; null if no solution
     public Iterable<Board> solution() {
+        if (moves < 0) return null;
         ArrayList<Board> result = new ArrayList<Board>(solution.length);
-        for (Board b: solution) {
+        for (Board b : solution) {
             result.add(b);
         }
         return result;
@@ -121,5 +126,9 @@ public class Solver {
             for (Board board : solver.solution())
                 StdOut.println(board);
         }
+    }
+
+    private void log(String logString){
+        System.out.println(logString);
     }
 }

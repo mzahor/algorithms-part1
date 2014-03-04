@@ -1,14 +1,14 @@
 import java.util.ArrayList;
 
 public class Board {
-    private final int[][] b;
-    private final int d;
+    private final int[][] board;
+    private final int dimension;
 
     // construct a board from an N-by-N array of blocks
     // (where blocks[i][j] = block in row i, column j)
     public Board(int[][] blocks) {
-        b = arrayClone(blocks);
-        d = b.length;
+        board = arrayClone(blocks);
+        dimension = board.length;
     }
 
     private int[][] arrayClone(int[][] source) {
@@ -22,16 +22,16 @@ public class Board {
 
     // board dimension N
     public int dimension() {
-        return d;
+        return dimension;
     }
 
     // number of blocks out of place
     public int hamming() {
         int result = 0;
-        for (int i = 0; i < d; i++) {
-            for (int j = 0; j < d; j++) {
-                if (b[i][j] == 0) continue;
-                if (b[i][j] != i * d + j + 1) result++;
+        for (int i = 0; i < dimension; i++) {
+            for (int j = 0; j < dimension; j++) {
+                if (board[i][j] == 0) continue;
+                if (board[i][j] != i * dimension + j + 1) result++;
             }
         }
         return result;
@@ -40,12 +40,12 @@ public class Board {
     // sum of Manhattan distances between blocks and goal
     public int manhattan() {
         int result = 0;
-        for (int i = 0; i < d; i++) {
-            for (int j = 0; j < d; j++) {
-                if (b[i][j] == 0) continue;
-                int val = b[i][j] - 1;
-                int iA = val / d;
-                int jA = val % d;
+        for (int i = 0; i < dimension; i++) {
+            for (int j = 0; j < dimension; j++) {
+                if (board[i][j] == 0) continue;
+                int val = board[i][j] - 1;
+                int iA = val / dimension;
+                int jA = val % dimension;
                 result += Math.abs(iA - i) + Math.abs(jA - j);
             }
         }
@@ -60,24 +60,16 @@ public class Board {
     // a board obtained by exchanging two adjacent blocks in the same row
     public Board twin() {
         Board result;
-        if (d > 1) {
-            if (b[0][0] != 0) {
-                if (b[0][1] != 0) {
-                    exchange(b, 0, 0, 0, 1);
-                    result = new Board(b);
-                    exchange(b, 0, 0, 0, 1);
-                } else {
-                    exchange(b, 0, 0, 1, 0);
-                    result = new Board(b);
-                    exchange(b, 0, 0, 1, 0);
-                }
+        if (dimension > 1) {
+            if (board[0][0] != 0 && board[0][1] != 0) {
+                result = new Board(board);
+                exchange(result.board, 0, 0, 0, 1);
             } else {
-                exchange(b, 1, 0, 1, 1);
-                result = new Board(b);
-                exchange(b, 1, 0, 1, 1);
+                result = new Board(board);
+                exchange(result.board, 1, 0, 1, 1);
             }
         } else {
-            result = new Board(b);
+            result = new Board(board);
         }
 
         return result;
@@ -98,13 +90,14 @@ public class Board {
     // does this board equal y?
     public boolean equals(Object y) {
         if (y == null) return false;
-        if (y.getClass() != Board.class) return false;
+        if (y == this) return true;
+        if (!y.getClass().isAssignableFrom(Board.class)) return false;
         Board other = (Board) y;
-        if (other.dimension() != d) return false;
+        if (other.dimension() != dimension) return false;
 
-        for (int i = 0; i < d; i++) {
-            for (int j = 0; j < d; j++) {
-                if (other.b[i][j] != this.b[i][j]) return false;
+        for (int i = 0; i < dimension; i++) {
+            for (int j = 0; j < dimension; j++) {
+                if (other.board[i][j] != this.board[i][j]) return false;
             }
         }
         return true;
@@ -114,38 +107,39 @@ public class Board {
     public Iterable<Board> neighbors() {
         int i0, j0;
         int pos0 = search0();
-        i0 = pos0 / d;
-        j0 = pos0 % d;
+        i0 = pos0 / dimension;
+        j0 = pos0 % dimension;
         ArrayList<Board> result = new ArrayList<Board>();
         Board board;
         if (i0 > 0) {
-            board = new Board(this.b);
-            this.exchange(board.b, i0, j0, i0 - 1, j0);
+            board = new Board(this.board);
+            this.exchange(board.board, i0, j0, i0 - 1, j0);
             result.add(board);
         }
         if (j0 > 0) {
-            board = new Board(this.b);
-            this.exchange(board.b, i0, j0, i0, j0 - 1);
+            board = new Board(this.board);
+            this.exchange(board.board, i0, j0, i0, j0 - 1);
+            result.add(board);
+
+        }
+        if (i0 < dimension - 1) {
+            board = new Board(this.board);
+            this.exchange(board.board, i0, j0, i0 + 1, j0);
             result.add(board);
         }
-        if (i0 < d - 1) {
-            board = new Board(this.b);
-            this.exchange(board.b, i0, j0, i0 + 1, j0);
-            result.add(board);
-        }
-        if (j0 < d - 1) {
-            board = new Board(this.b);
-            this.exchange(board.b, i0, j0, i0, j0 + 1);
+        if (j0 < dimension - 1) {
+            board = new Board(this.board);
+            this.exchange(board.board, i0, j0, i0, j0 + 1);
             result.add(board);
         }
         return result;
     }
 
     private int search0() {
-        for (int i = 0; i < b.length; i++) {
-            for (int j = 0; j < b.length; j++)
-                if (b[i][j] == 0)
-                    return i * d + j;
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board.length; j++)
+                if (board[i][j] == 0)
+                    return i * dimension + j;
         }
         throw new IllegalArgumentException("Board doesn't have a free block.");
     }
@@ -153,17 +147,19 @@ public class Board {
     // string representation of the board (in the output format specified below)
     public String toString() {
         StringBuilder result = new StringBuilder();
-        int maxLen = Integer.toString(d).length();
+        result.append(Integer.toString(dimension) + "\n");
+        int maxLen = Integer.toString(dimension * dimension - 1).length();
         String format = "%" + Integer.toString(maxLen) + "d ";
-        for (int i = 0; i < d; i++) {
-            for (int j = 0; j < d; j++) {
-                if (b[i][j] == 0)
-                    result.append("  ");
-                else
-                    result.append(String.format(format, b[i][j]));
+        for (int i = 0; i < dimension; i++) {
+            for (int j = 0; j < dimension; j++) {
+                result.append(String.format(format, board[i][j]));
             }
             result.append("\n");
         }
         return result.toString();
+    }
+
+    private void log(String logString){
+        System.out.println(logString);
     }
 }

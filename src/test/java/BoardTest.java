@@ -132,7 +132,7 @@ public class BoardTest {
                 {7, 8, 0},
         });
 
-        Assert.assertEquals("1 2 3 \n4 5 6 \n7 8   \n", board.toString());
+        Assert.assertEquals("3\n1 2 3 \n4 5 6 \n7 8 0 \n", board.toString());
     }
 
     @Test
@@ -174,8 +174,8 @@ public class BoardTest {
         });
 
         Assert.assertTrue(board.twin().equals(new Board(new int[][]{
-                {4, 0, 3},
-                {1, 5, 6},
+                {1, 0, 3},
+                {5, 4, 6},
                 {7, 8, 2},
         })));
     }
