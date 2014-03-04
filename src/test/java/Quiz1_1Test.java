@@ -22,17 +22,17 @@ public class Quiz1_1Test {
 
         List<Pair<Integer, Integer>> input = parsePairs("9-2 0-8 0-3 6-1 2-4 6-3");
 
-        for (Pair<Integer, Integer> pair: input) {
+        for (Pair<Integer, Integer> pair : input) {
             uf.union(pair.fst, pair.snd);
         }
 
         Class clazz = QuickFindUF.class;
-        Field field =  clazz.getDeclaredField("data");
+        Field field = clazz.getDeclaredField("data");
         field.setAccessible(true);
         int[] id = (int[]) field.get(uf);
 
         System.out.println("Task 1:");
-        for (int i = 0 ; i < len; i ++) {
+        for (int i = 0; i < len; i++) {
             System.out.printf("%d ", id[i]);
         }
         System.out.println();
@@ -55,17 +55,17 @@ public class Quiz1_1Test {
 
         List<Pair<Integer, Integer>> input = parsePairs("8-7 8-2 3-5 9-6 5-9 0-2 4-7 2-3 8-1");
 
-        for (Pair<Integer, Integer> pair: input) {
+        for (Pair<Integer, Integer> pair : input) {
             uf.union(pair.fst, pair.snd);
         }
 
         Class clazz = WeightedQuickUnionUF.class;
-        Field field =  clazz.getDeclaredField("id");
+        Field field = clazz.getDeclaredField("id");
         field.setAccessible(true);
         int[] id = (int[]) field.get(uf);
 
         System.out.println("Task 2:");
-        for (int i = 0 ; i < len; i ++) {
+        for (int i = 0; i < len; i++) {
             System.out.printf("%d ", id[i]);
         }
         System.out.println();
@@ -74,7 +74,7 @@ public class Quiz1_1Test {
     private List<Pair<Integer, Integer>> parsePairs(String input) {
         ArrayList<Pair<Integer, Integer>> result = new ArrayList<Pair<Integer, Integer>>();
 
-        for (String pair: input.split(" ")) {
+        for (String pair : input.split(" ")) {
             String[] currPair = pair.split("-");
             int a = Integer.parseInt(currPair[0]);
             int b = Integer.parseInt(currPair[1]);

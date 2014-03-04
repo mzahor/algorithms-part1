@@ -35,8 +35,7 @@ public class QuickUnionUF {
         if (weight[rootA] < weight[rootB]) {
             data[rootA] = rootB;
             weight[rootB] += weight[rootA];
-        }
-        else {
+        } else {
             data[rootB] = rootA;
             weight[rootA] += weight[rootB];
         }

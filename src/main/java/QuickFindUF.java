@@ -16,7 +16,7 @@ public class QuickFindUF {
         int prev = data[a];
         int curr = data[b];
 
-        for(int i = 0; i < data.length; i++) {
+        for (int i = 0; i < data.length; i++) {
             if (data[i] == prev) {
                 data[i] = curr;
             }

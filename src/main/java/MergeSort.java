@@ -9,8 +9,8 @@ public class MergeSort {
         }
 
         // copy the rest of items in one of arrays if any
-        while (i < arr1.length) res[i+j] = arr1[i];
-        while (j < arr2.length) res[i+j] = arr2[j];
+        while (i < arr1.length) res[i + j] = arr1[i];
+        while (j < arr2.length) res[i + j] = arr2[j];
 
         return res;
     }
